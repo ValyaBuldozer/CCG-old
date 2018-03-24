@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -31,24 +32,29 @@ namespace NetworkArchitecture.Server
 
         public void Stop()
         {
-
+            foreach (var iClient in Clients)
+            {
+                iClient.Communicator.Disconnect();
+            }
+            //_tcpListener.EndAcceptSocket()
         }
 
         public TcpServer(int port)
         {
             PORT = port;
             _tcpListener = new TcpListener(IPAddress.Parse(LOCALHOST_IP),PORT);
+            Clients = new List<IClient>();
         }
 
-        public static void DoAcceptTcpClientCallback(IAsyncResult ar)
+        public void DoAcceptTcpClientCallback(IAsyncResult ar)
         {
             // Get the listener that handles the client request.
             TcpListener listener = (TcpListener)ar.AsyncState;
 
             TcpClient client = listener.EndAcceptTcpClient(ar);
-
             _tcpClientConnected.Set();
 
+            Clients.Add(new Client(client));
         }
     }
 }

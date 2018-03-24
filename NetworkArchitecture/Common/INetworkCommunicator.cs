@@ -10,5 +10,8 @@ namespace NetworkArchitecture.Common
     {
         bool SendMessage(Message message);
         Message ReadMessage();
+
+        bool Connect();
+        bool Disconnect();
     }
 }
