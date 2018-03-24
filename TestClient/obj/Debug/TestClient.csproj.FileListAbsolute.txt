@@ -1,0 +1,9 @@
+C:\Users\1\Source\Repos\CollectibleCardGame\TestClient\bin\Debug\TestClient.exe.config
+C:\Users\1\Source\Repos\CollectibleCardGame\TestClient\bin\Debug\TestClient.exe
+C:\Users\1\Source\Repos\CollectibleCardGame\TestClient\bin\Debug\TestClient.pdb
+C:\Users\1\Source\Repos\CollectibleCardGame\TestClient\bin\Debug\NetworkArchitecture.dll
+C:\Users\1\Source\Repos\CollectibleCardGame\TestClient\bin\Debug\NetworkArchitecture.pdb
+C:\Users\1\Source\Repos\CollectibleCardGame\TestClient\obj\Debug\TestClient.csprojResolveAssemblyReference.cache
+C:\Users\1\Source\Repos\CollectibleCardGame\TestClient\obj\Debug\TestClient.csproj.CoreCompileInputs.cache
+C:\Users\1\Source\Repos\CollectibleCardGame\TestClient\obj\Debug\TestClient.exe
+C:\Users\1\Source\Repos\CollectibleCardGame\TestClient\obj\Debug\TestClient.pdb

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NetworkArchitecture.Server
 {
-    class TcpServer : IServer
+    public class TcpServer : IServer
     {
         private const string LOCALHOST_IP = "127.0.0.1";
         private readonly int PORT;
@@ -18,15 +18,19 @@ namespace NetworkArchitecture.Server
 
         public ICollection<IClient> Clients { set; get; }
 
-        public static ManualResetEvent _tcpClientConnected =
+        public ManualResetEvent _tcpClientConnected =
             new ManualResetEvent(false);
 
         public void Start()
         {
             _tcpClientConnected.Reset();
             _tcpListener.Start();
-            _tcpListener.BeginAcceptTcpClient(new AsyncCallback(DoAcceptTcpClientCallback), _tcpListener);
-            _tcpClientConnected.WaitOne();
+            while (true)
+            {
+                var result = 
+                    _tcpListener.BeginAcceptTcpClient(new AsyncCallback(DoAcceptTcpClientCallback), _tcpListener);
+                result.AsyncWaitHandle.WaitOne();
+            }
         }
 
         public void Stop()
@@ -38,16 +42,22 @@ namespace NetworkArchitecture.Server
         {
             PORT = port;
             _tcpListener = new TcpListener(IPAddress.Parse(LOCALHOST_IP),PORT);
+            Clients = new List<IClient>();
         }
 
-        public static void DoAcceptTcpClientCallback(IAsyncResult ar)
+        public void DoAcceptTcpClientCallback(IAsyncResult ar)
         {
             // Get the listener that handles the client request.
             TcpListener listener = (TcpListener)ar.AsyncState;
 
-            TcpClient client = listener.EndAcceptTcpClient(ar);
+            TcpClient tcpClient = listener.EndAcceptTcpClient(ar);
 
+            Client client = new Client(tcpClient);
+            Clients.Add(client);
+            client.Communicator.StartReadWriteMessages();
             _tcpClientConnected.Set();
+
+
 
         }
     }

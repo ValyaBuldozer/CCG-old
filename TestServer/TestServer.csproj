@@ -48,5 +48,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NetworkArchitecture\NetworkArchitecture.csproj">
+      <Project>{6d24d320-c003-4b98-a8b7-2de8ea6e9d33}</Project>
+      <Name>NetworkArchitecture</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

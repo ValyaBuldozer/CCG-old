@@ -12,14 +12,14 @@ namespace NetworkArchitecture.Server
     {
         public string IdentificatorTocken { set; get; }
 
-        public INetworkCommunicator Communicator { set; get; }
+        public TcpCommunicator Communicator { set; get; }
 
         public bool IsInSystem { set; get; }
 
         public Client(TcpClient tcpClient)
         {
             IsInSystem = false;
-            Communicator = new TcpCommunicator();
+            Communicator = new TcpCommunicator(tcpClient);
         }
     }
 }
