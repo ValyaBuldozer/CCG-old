@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Common\ClientState.cs" />
+    <Compile Include="Common\Encoder.cs" />
     <Compile Include="Common\INetworkCommunicator.cs" />
     <Compile Include="Common\Message.cs" />
     <Compile Include="Common\ServerState.cs" />

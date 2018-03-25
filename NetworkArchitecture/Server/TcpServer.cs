@@ -18,12 +18,8 @@ namespace NetworkArchitecture.Server
 
         public ICollection<IClient> Clients { set; get; }
 
-        public ManualResetEvent _tcpClientConnected =
-            new ManualResetEvent(false);
-
         public void Start()
         {
-            _tcpClientConnected.Reset();
             _tcpListener.Start();
             while (true)
             {
@@ -54,11 +50,8 @@ namespace NetworkArchitecture.Server
 
             Client client = new Client(tcpClient);
             Clients.Add(client);
-            client.Communicator.StartReadWriteMessages();
-            _tcpClientConnected.Set();
-
-
-
+            Console.WriteLine("Client connected");
+            client.Communicator.StartReadMessages();
         }
     }
 }

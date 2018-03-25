@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using NetworkArchitecture.Common;
 
 namespace TestClient
 {
@@ -46,7 +48,7 @@ namespace TestClient
 
         private static void Main(string[] args)
         {
-
+            
             var server = "127.0.0.1"; // Server name or IP address
 
             // Use port argument if supplied, otherwise default to 7
@@ -56,47 +58,88 @@ namespace TestClient
 
             client.Connect(server, servPort);
 
-            var netStream = client.GetStream();
+            TcpCommunicator communicator = new TcpCommunicator(client);
 
-            while (true)
+            try
             {
-                Console.WriteLine("Введите что-то");
-                string userMsg = Console.ReadLine();
+                while (true)
+                {
+                   // Console.WriteLine("Введите что-то");
+                    //string userMsg = Console.ReadLine();
+                    string userMsg = "test message";
+                    if(string.IsNullOrEmpty(userMsg))
+                        break;
 
-                if(userMsg == "stop") break;
+                    Stopwatch watch = new Stopwatch();
 
-                var clientState = new ClientState(netStream,
-                    Encoding.UTF8.GetBytes(userMsg));
-                // Send the encoded string to the server
-                var result = netStream.BeginWrite(clientState.ByteBuffer, 0,
-                    clientState.ByteBuffer.Length,
-                    WriteCallback,
-                    clientState);
+                    watch.Start();
+                    Message message = new Message(userMsg);
+                    communicator.SendMessage(message);
 
-                //doOtherStuff();
+                   // Console.WriteLine("Server answer ");
+                   // Console.WriteLine(communicator.ReadMessage().Content);
+                    watch.Stop();
 
-                result.AsyncWaitHandle.WaitOne(); // block until EndWrite is called
-
-                string request = "";
-                //while (netStream.DataAvailable)
-                //{
-                    byte[] bytes = new byte[32];
-                    var readResult = netStream.Read(bytes,0,bytes.Length);
-                    request += Encoding.UTF8.GetString(bytes);
-                //}
-
-                Console.WriteLine(request);
-                // Receive the same string back from the server
-                //result = netStream.BeginRead(clientState.ByteBuffer, clientState.TotalBytes,
-                //    clientState.ByteBuffer.Length - clientState.TotalBytes,
-                //    ReadCallback, clientState);
-
-                //result.AsyncWaitHandle.WaitOne();
-                //ReadDone.WaitOne(); // Block until ReadDone is manually set
+                    Console.WriteLine(watch.ElapsedMilliseconds);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
             }
 
-            netStream.Close(); // Close the stream
-            client.Close(); // Close the socket
+            Console.Read();
+
+            //var netStream = client.GetStream();
+
+            //while (true)
+            //{
+            //    Console.WriteLine("Введите что-то");
+            //    string userMsg = Console.ReadLine();
+
+            //    if(userMsg == "stop") break;
+
+            //    byte[] lengthBuffer = Encoding.UTF8.GetBytes(userMsg.Length.ToString());
+            //    if (lengthBuffer.Length > 6)
+            //    {
+            //        Console.WriteLine("Слишком большое сообщение");
+            //        break;
+            //    }
+
+            //    netStream.Write(lengthBuffer,0,lengthBuffer.Length);
+
+            //    var clientState = new ClientState(netStream,
+            //        Encoding.UTF8.GetBytes(userMsg));
+            //    // Send the encoded string to the server
+            //    var result = netStream.BeginWrite(clientState.ByteBuffer, 0,
+            //        clientState.ByteBuffer.Length,
+            //        WriteCallback,
+            //        clientState);
+
+            //    //doOtherStuff();
+
+            //    result.AsyncWaitHandle.WaitOne(); // block until EndWrite is called
+
+            //    string request = "";
+            //    //while (netStream.DataAvailable)
+            //    //{
+            //        byte[] bytes = new byte[32];
+            //        var readResult = netStream.Read(bytes,0,bytes.Length);
+            //        request += Encoding.UTF8.GetString(bytes);
+            //    //}
+
+            //    Console.WriteLine(request);
+            //    // Receive the same string back from the server
+            //    //result = netStream.BeginRead(clientState.ByteBuffer, clientState.TotalBytes,
+            //    //    clientState.ByteBuffer.Length - clientState.TotalBytes,
+            //    //    ReadCallback, clientState);
+
+            //    //result.AsyncWaitHandle.WaitOne();
+            //    //ReadDone.WaitOne(); // Block until ReadDone is manually set
+            //}
+
+            //netStream.Close(); // Close the stream
+            //client.Close(); // Close the socket
         }
 
         public static void doOtherStuff()

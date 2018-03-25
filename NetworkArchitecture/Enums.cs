@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NetworkArchitecture
 {
-    class EnumsService
+    public class EnumsService
     {
         public static Dictionary<byte,MessageType> MessageTypeConverDictionary = new Dictionary<byte, MessageType>()
         {
@@ -14,7 +14,7 @@ namespace NetworkArchitecture
         };
     }
 
-    enum MessageType
+    public enum MessageType
     {
         Default
     }
