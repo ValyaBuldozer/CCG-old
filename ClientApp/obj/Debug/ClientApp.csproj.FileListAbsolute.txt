@@ -1,0 +1,14 @@
+D:\_Projects\CollectibleCardGame\ClientApp\bin\Debug\ClientApp.exe.config
+D:\_Projects\CollectibleCardGame\ClientApp\bin\Debug\ClientApp.exe
+D:\_Projects\CollectibleCardGame\ClientApp\bin\Debug\ClientApp.pdb
+D:\_Projects\CollectibleCardGame\ClientApp\obj\Debug\MainWindow.g.cs
+D:\_Projects\CollectibleCardGame\ClientApp\obj\Debug\App.g.cs
+D:\_Projects\CollectibleCardGame\ClientApp\obj\Debug\ClientApp_MarkupCompile.cache
+D:\_Projects\CollectibleCardGame\ClientApp\obj\Debug\ClientApp_MarkupCompile.lref
+D:\_Projects\CollectibleCardGame\ClientApp\obj\Debug\MainWindow.baml
+D:\_Projects\CollectibleCardGame\ClientApp\obj\Debug\ClientApp.g.resources
+D:\_Projects\CollectibleCardGame\ClientApp\obj\Debug\ClientApp.Properties.Resources.resources
+D:\_Projects\CollectibleCardGame\ClientApp\obj\Debug\ClientApp.csproj.GenerateResource.Cache
+D:\_Projects\CollectibleCardGame\ClientApp\obj\Debug\ClientApp.csproj.CoreCompileInputs.cache
+D:\_Projects\CollectibleCardGame\ClientApp\obj\Debug\ClientApp.exe
+D:\_Projects\CollectibleCardGame\ClientApp\obj\Debug\ClientApp.pdb

@@ -1,0 +1,16 @@
+D:\_Projects\CollectibleCardGame\TestLoadAnima\bin\Debug\TestLoadAnima.exe
+D:\_Projects\CollectibleCardGame\TestLoadAnima\bin\Debug\TestLoadAnima.pdb
+D:\_Projects\CollectibleCardGame\TestLoadAnima\obj\Debug\TestLoadAnima.csprojResolveAssemblyReference.cache
+D:\_Projects\CollectibleCardGame\TestLoadAnima\obj\Debug\LoadingWindow.g.cs
+D:\_Projects\CollectibleCardGame\TestLoadAnima\obj\Debug\MainWindow.g.cs
+D:\_Projects\CollectibleCardGame\TestLoadAnima\obj\Debug\App.g.cs
+D:\_Projects\CollectibleCardGame\TestLoadAnima\obj\Debug\TestLoadAnima_MarkupCompile.cache
+D:\_Projects\CollectibleCardGame\TestLoadAnima\obj\Debug\TestLoadAnima_MarkupCompile.lref
+D:\_Projects\CollectibleCardGame\TestLoadAnima\obj\Debug\LoadingWindow.baml
+D:\_Projects\CollectibleCardGame\TestLoadAnima\obj\Debug\MainWindow.baml
+D:\_Projects\CollectibleCardGame\TestLoadAnima\obj\Debug\TestLoadAnima.g.resources
+D:\_Projects\CollectibleCardGame\TestLoadAnima\obj\Debug\TestLoadAnima.Properties.Resources.resources
+D:\_Projects\CollectibleCardGame\TestLoadAnima\obj\Debug\TestLoadAnima.csproj.GenerateResource.Cache
+D:\_Projects\CollectibleCardGame\TestLoadAnima\obj\Debug\TestLoadAnima.csproj.CoreCompileInputs.cache
+D:\_Projects\CollectibleCardGame\TestLoadAnima\obj\Debug\TestLoadAnima.exe
+D:\_Projects\CollectibleCardGame\TestLoadAnima\obj\Debug\TestLoadAnima.pdb
