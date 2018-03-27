@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using NetworkArchitecture.Common;
 
 namespace NetworkArchitecture.Server
 {
@@ -20,18 +21,37 @@ namespace NetworkArchitecture.Server
 
         public void Start()
         {
-            _tcpListener.Start();
-            while (true)
+            Console.WriteLine("Server is startinng...");
+            try
             {
-                var result = 
-                    _tcpListener.BeginAcceptTcpClient(new AsyncCallback(DoAcceptTcpClientCallback), _tcpListener);
-                result.AsyncWaitHandle.WaitOne();
+                _tcpListener.Start();
+                while (true)
+                {
+                    var result =
+                        _tcpListener.BeginAcceptTcpClient(new AsyncCallback(DoAcceptTcpClientCallback), _tcpListener);
+                    result.AsyncWaitHandle.WaitOne();
+                }
+            }
+            catch (SocketException e)
+            {
+                Console.WriteLine(e);
+                _tcpListener.Stop();
             }
         }
 
         public void Stop()
         {
+            foreach (var iClient in Clients)
+            {
+                try
+                {
+                    iClient.Communicator.Disconnect();
+                }
+                catch(SocketException e) { }
+            }
 
+            _tcpListener.Stop();
+            Console.WriteLine("Server stoped");
         }
 
         public TcpServer(int port)
@@ -51,7 +71,7 @@ namespace NetworkArchitecture.Server
             Client client = new Client(tcpClient);
             Clients.Add(client);
             Console.WriteLine("Client connected");
-            client.Communicator.StartReadMessages();
+            ((TcpCommunicator)client.Communicator).StartReadMessages();
         }
     }
 }

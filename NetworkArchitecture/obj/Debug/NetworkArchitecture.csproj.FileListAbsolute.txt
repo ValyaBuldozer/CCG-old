@@ -3,4 +3,3 @@ C:\Users\1\Source\Repos\CollectibleCardGame\NetworkArchitecture\bin\Debug\Networ
 C:\Users\1\Source\Repos\CollectibleCardGame\NetworkArchitecture\bin\Debug\NetworkArchitecture.pdb
 C:\Users\1\Source\Repos\CollectibleCardGame\NetworkArchitecture\obj\Debug\NetworkArchitecture.dll
 C:\Users\1\Source\Repos\CollectibleCardGame\NetworkArchitecture\obj\Debug\NetworkArchitecture.pdb
-C:\Users\1\Source\Repos\CollectibleCardGame\NetworkArchitecture\obj\Debug\NetworkArchitecture.csprojResolveAssemblyReference.cache

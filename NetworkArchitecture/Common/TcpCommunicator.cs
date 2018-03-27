@@ -110,6 +110,11 @@ namespace NetworkArchitecture.Common
             }
         }
 
+        public bool Connect()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Connect(IPAddress IPadress,int port)
         {
             try

@@ -12,7 +12,7 @@ namespace NetworkArchitecture.Server
     {
         public string IdentificatorTocken { set; get; }
 
-        public TcpCommunicator Communicator { set; get; }
+        public INetworkCommunicator Communicator { set; get; }
 
         public bool IsInSystem { set; get; }
 
