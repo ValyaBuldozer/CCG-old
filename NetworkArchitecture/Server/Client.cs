@@ -19,7 +19,7 @@ namespace NetworkArchitecture.Server
         public Client(TcpClient tcpClient)
         {
             IsInSystem = false;
-            Communicator = new TcpCommunicator();
+            Communicator = new TcpCommunicator(tcpClient);
         }
     }
 }

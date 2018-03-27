@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace NetworkArchitecture.Common
 {
-    interface INetworkCommunicator
+    public interface INetworkCommunicator
     {
         bool SendMessage(Message message);
         Message ReadMessage();
-
         bool Connect();
         bool Disconnect();
     }

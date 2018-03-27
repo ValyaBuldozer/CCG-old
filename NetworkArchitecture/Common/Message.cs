@@ -6,29 +6,21 @@ using System.Threading.Tasks;
 
 namespace NetworkArchitecture.Common
 {
-    class Message
+    public class Message
     {
         public string Content { set; get; }
         public string Length { set; get; }
-        public MessageType Type { set; get; }
+        public Encoder Encoder { set; get; }
 
-        public byte[] ContentBytes
+        public Message()
         {
-            get => Encoding.UTF8.GetBytes(Content);
-            set => Content = Encoding.UTF8.GetString(value);
+            Encoder = new Encoder();
         }
 
-        public byte[] LengthBytes => Encoding.UTF8.GetBytes(Length);
-
-        public byte[] TypeBytes { get; set; }
-
-        public Message() { }
-
-        public Message(string content,MessageType type)
+        public Message(string content)
         {
+            Encoder = new Encoder();
             Content = content;
-            Type = type;
-            
         }
     }
 }

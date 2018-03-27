@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NetworkArchitecture.Server
 {
-    interface IServer
+    public interface IServer
     {
         ICollection<IClient> Clients { set; get; }
         void Start();

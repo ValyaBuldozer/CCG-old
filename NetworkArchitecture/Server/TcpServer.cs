@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using NetworkArchitecture.Common;
 
 namespace NetworkArchitecture.Server
 {
-    class TcpServer : IServer
+    public class TcpServer : IServer
     {
         private const string LOCALHOST_IP = "127.0.0.1";
         private readonly int PORT;
@@ -19,30 +19,45 @@ namespace NetworkArchitecture.Server
 
         public ICollection<IClient> Clients { set; get; }
 
-        public static ManualResetEvent _tcpClientConnected =
-            new ManualResetEvent(false);
-
         public void Start()
         {
-            _tcpClientConnected.Reset();
-            _tcpListener.Start();
-            _tcpListener.BeginAcceptTcpClient(new AsyncCallback(DoAcceptTcpClientCallback), _tcpListener);
-            _tcpClientConnected.WaitOne();
+            Console.WriteLine("Server is startinng...");
+            try
+            {
+                _tcpListener.Start();
+                while (true)
+                {
+                    var result =
+                        _tcpListener.BeginAcceptTcpClient(new AsyncCallback(DoAcceptTcpClientCallback), _tcpListener);
+                    result.AsyncWaitHandle.WaitOne();
+                }
+            }
+            catch (SocketException e)
+            {
+                Console.WriteLine(e);
+                _tcpListener.Stop();
+            }
         }
 
         public void Stop()
         {
             foreach (var iClient in Clients)
             {
-                iClient.Communicator.Disconnect();
+                try
+                {
+                    iClient.Communicator.Disconnect();
+                }
+                catch (SocketException e) { }
             }
-            //_tcpListener.EndAcceptSocket()
+
+            _tcpListener.Stop();
+            Console.WriteLine("Server stoped");
         }
 
         public TcpServer(int port)
         {
             PORT = port;
-            _tcpListener = new TcpListener(IPAddress.Parse(LOCALHOST_IP),PORT);
+            _tcpListener = new TcpListener(IPAddress.Parse(LOCALHOST_IP), PORT);
             Clients = new List<IClient>();
         }
 
@@ -51,10 +66,12 @@ namespace NetworkArchitecture.Server
             // Get the listener that handles the client request.
             TcpListener listener = (TcpListener)ar.AsyncState;
 
-            TcpClient client = listener.EndAcceptTcpClient(ar);
-            _tcpClientConnected.Set();
+            TcpClient tcpClient = listener.EndAcceptTcpClient(ar);
 
-            Clients.Add(new Client(client));
+            Client client = new Client(tcpClient);
+            Clients.Add(client);
+            Console.WriteLine("Client connected");
+            ((TcpCommunicator)client.Communicator).StartReadMessages();
         }
     }
 }

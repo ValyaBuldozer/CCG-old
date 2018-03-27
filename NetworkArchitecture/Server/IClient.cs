@@ -7,7 +7,7 @@ using NetworkArchitecture.Common;
 
 namespace NetworkArchitecture.Server
 {
-    interface IClient
+    public interface IClient
     {
         INetworkCommunicator Communicator { set; get; }
         string IdentificatorTocken { set; get; }
