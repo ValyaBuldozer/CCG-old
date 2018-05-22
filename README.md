@@ -1,7 +1,7 @@
 # CollectibleCardGame
 Simple server-client application
 
- <hr>Требования к системе:
+ <h3>Требования к системе:
  <hr>SQL Server 2017
  .NET Framework 4.5.2
  Visual Studio 2017
