@@ -2,7 +2,7 @@
 Simple server-client application
 
  <h3>Требования к системе:</h3>
- <hr>
+
  **SQL Server 2017**
  ---
  **.NET Framework 4.5.2**
