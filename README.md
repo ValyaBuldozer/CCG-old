@@ -5,9 +5,9 @@ Simple server-client application
 
  <li>SQL Server 2017
  
- .NET Framework 4.5.2
+ <li>.NET Framework 4.5.2
 
- Visual Studio 2017<li>
+ <li>Visual Studio 2017
  
 
   Перед запуском соберите проект в Visual Studio 2017.
